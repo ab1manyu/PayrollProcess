@@ -2,6 +2,8 @@ public class Company {
     private Employee[] emplist;
     private int numEmployee;
 
+    private final int ADDED_LENGTH = 4;
+
     /**
      * A helper method to check to see and find a employee in the employee list.
      * @param employee the Employee we are looking for.
@@ -24,7 +26,7 @@ public class Company {
      */
     private void grow() {
         Employee[] emplist = this.emplist;
-        int newLength = emplist.length + 4;
+        int newLength = emplist.length + ADDED_LENGTH;
         Employee[] newBag = new Employee[newLength];
         for(int i = 0; i < emplist.length; i++){
             newBag[i] = emplist[i];
@@ -38,7 +40,6 @@ public class Company {
      */
     public boolean add(Employee employee) { //check the profile before adding
         Employee[] emplist = this.emplist;
-        boolean placed = false;
         for (int i = 0; i < emplist.length; i++){
             if(emplist[i] == null){
                 emplist[i] = employee;
@@ -46,13 +47,10 @@ public class Company {
                 return true;
             }
         }
-        if(!placed){
-            this.grow();
-            this.add(employee);
-            return true;
-        }
+        //If it gets to this point, that means the Employee wasn't added yet
+        this.grow();
+        return this.add(employee);
 
-        return false;
     }
 
 

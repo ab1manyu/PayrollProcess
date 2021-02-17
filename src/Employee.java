@@ -15,8 +15,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return this.profile.toString() + "::Payment "
-                + this.payment + "::" + type;
+        return this.profile.toString() + "::Payment " + this.payment + "::" + type;
     }
 
     @Override
@@ -27,4 +26,33 @@ public class Employee {
         boolean isEqual = number1.profile.equals(number2.profile);
         return isEqual;
     }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public boolean compareDates(Employee employee) {
+        Date date1 = this.getProfile().getDateHired();
+        Date date2 = employee.getProfile().getDateHired();
+
+        if (date1.getYear() < date2.getYear()) {
+            return true;
+        } else {
+            if (date1.getYear() == date2.getYear()) {
+                if (date1.getMonth() < date2.getMonth()) {
+                    return true;
+                } else {
+                    if (date1.getMonth() == date2.getMonth()) {
+                        return date1.getDay() < date2.getDay();
+                    } else {
+                        return false;
+                    }
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+
+
 }

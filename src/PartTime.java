@@ -5,4 +5,6 @@ public class PartTime extends Employee {
         super(profile);
         this.hourly = hourly;
     }
+
+
 }

@@ -20,4 +20,12 @@ public class Profile {
 
         return sameName && sameDepartment && sameDate;
     }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public Date getDateHired() {
+        return dateHired;
+    }
 }

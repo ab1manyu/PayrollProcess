@@ -40,8 +40,8 @@ public class Company {
      */
     public boolean add(Employee employee) { //check the profile before adding
         Employee[] emplist = this.emplist;
-        for (int i = 0; i < emplist.length; i++){
-            if(emplist[i] == null){
+        for (int i = 0; i < emplist.length; i++) {
+            if (emplist[i] == null) {
                 emplist[i] = employee;
                 numEmployee++;
                 return true;
@@ -50,18 +50,57 @@ public class Company {
         //If it gets to this point, that means the Employee wasn't added yet
         this.grow();
         return this.add(employee);
+    }
 
+    //maintain the original sequence
+    public boolean remove(Employee employee) {
+        return false;
+    }
+
+    //set working hours for a part time
+    public boolean setHours(Employee employee) {
+        return false;
+
+    }
+    //process payments for all employees
+    public void processPayments() { }
+
+    //print earning statements for all employees
+    public void print() {
+        Employee[] emplist = this.emplist;
+        for (Employee employee : emplist) {
+            if (employee != null)
+                System.out.println(employee);
+        }
+    }
+    //print earning statements by department
+    public void printByDepartment() {
+        this.sortByDepartment();
+        this.print();
+    }
+    //print earning statements by date hired
+    public void printByDate() {
+        this.sortByDate();
+        this.print();
+    }
+
+    private void sortByDate(){
+        int arrLength = this.emplist.length;
+        for (int i = 0; i < arrLength-1; i++) {
+            int currentMin = i;
+            for (int j = i+1; j < arrLength; j++) {
+                if (this.emplist[j] != null && this.emplist[currentMin] != null) {
+                    if (this.emplist[j].compareDates(this.emplist[currentMin])){
+                        currentMin = j;
+                    }
+
+                }
+            }
+            Employee temp = this.emplist[currentMin];
+            this.emplist[currentMin] = this.emplist[i];
+            this.emplist[i] = temp;
+        }
     }
 
 
-    public boolean remove(Employee employee) {
-        return false;
-    } //maintain the original sequence
-    public boolean setHours(Employee employee) {
-        return false;
-    } //set working hours for a part time
-    public void processPayments() { } //process payments for all employees
-    public void print() { } //print earning statements for all employees
-    public void printByDepartment() { } //print earning statements by department
-    public void printByDate() { } //print earning statements by date hired
 }

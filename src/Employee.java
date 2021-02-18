@@ -1,21 +1,17 @@
 public class Employee {
     private Profile profile;
-    private String type;
     private double payment;
 
-    public Employee(Profile profile, String type){
+    public Employee(Profile profile){
         this.profile = profile;
-        this.type = type;
         this.payment = 0;
     }
 
-    public void calculatePayment(){
-
-    }
+    public void calculatePayment(){ }
 
     @Override
     public String toString() {
-        return this.profile.toString() + "::Payment " + this.payment + "::" + type;
+        return this.profile.toString() + "::Payment " + this.payment;
     }
 
     @Override
@@ -27,8 +23,14 @@ public class Employee {
         return isEqual;
     }
 
+
+
     public Profile getProfile() {
         return profile;
+    }
+
+    public void setPayment(double payment){
+        this.payment = payment;
     }
 
     public boolean compareDates(Employee employee) {

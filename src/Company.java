@@ -102,5 +102,41 @@ public class Company {
         }
     }
 
+    private void sortByDepartment(){
+        int arrLength = this.emplist.length;
+
+        //move all employees under the CS department to the front
+        for (int i = arrLength-1; i > -1; i--) {
+            int currentSwap = i;
+            for (int j = arrLength-1; j > -1; j--) {
+                if (this.emplist[j] != null && this.emplist[currentSwap] != null) {
+                    if (this.emplist[i].getProfile().getDepartment().equals("CS")) {
+                        currentSwap = j;
+                    }
+                }
+            }
+
+            Employee temp = this.emplist[currentSwap];
+            this.emplist[currentSwap] = this.emplist[i];
+            this.emplist[i] = temp;
+        }
+
+        //move all employees under the IT department to the back
+        for (int i = 0; i < arrLength; i++) {
+            int currentSwap = i;
+            for (int j = 0; j < arrLength; j++) {
+                if (this.emplist[j] != null && this.emplist[currentSwap] != null) {
+                    if (this.emplist[i].getProfile().getDepartment().equals("IT")) {
+                        currentSwap = j;
+                    }
+                }
+            }
+
+            Employee temp = this.emplist[currentSwap];
+            this.emplist[currentSwap] = this.emplist[i];
+            this.emplist[i] = temp;
+        }
+    }
+
 
 }

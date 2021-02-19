@@ -14,7 +14,28 @@ public class Management extends FullTime {
         this.role = role;
     }
 
-    public String getRoleAsString(){
+    @Override
+    public void calculatePayment() {
+        double compensation = this.getCompensation();
+        double salary = super.getSalary();
+        super.setPayment(salary + compensation);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "::" + this.getRoleAsString() + " Compensation " + this.getCompensation() ;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Management number1 = this;
+        Management number2 = (Management) obj;
+        boolean equalStats = super.equals(obj);
+        boolean equalRole = number1.role == number2.role;
+        return equalRole && equalRole;
+    }
+
+    private String getRoleAsString(){
         int role = this.role;
         if(role == MANAGER){
             return "Manager";
@@ -25,29 +46,16 @@ public class Management extends FullTime {
         }
     }
 
-    @Override
-    public void calculatePayment() {
+    private double getCompensation(){
         int role = this.role;
         double compensation = 0;
         if(role == MANAGER){
-             compensation = MANAGER_COMPENSATION/FullTime.TOTAL_PAY_PERIODS;
+            compensation = MANAGER_COMPENSATION/FullTime.TOTAL_PAY_PERIODS;
         }else if(role == DEPARTMENT_HEAD){
-             compensation = DEPT_HEAD_COMPENSATION/FullTime.TOTAL_PAY_PERIODS;
+            compensation = DEPT_HEAD_COMPENSATION/FullTime.TOTAL_PAY_PERIODS;
         }else if(role == DIRECTOR){
-             compensation = DIRECTOR_COMPENSATION/FullTime.TOTAL_PAY_PERIODS;
+            compensation = DIRECTOR_COMPENSATION/FullTime.TOTAL_PAY_PERIODS;
         }
-        double salary = super.getSalary();
-        super.setPayment(salary + compensation);
-    }
-
-    @Override
-    public String toString() {
-
-        return super.toString() + "::" + this.getRoleAsString() ;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+        return compensation;
     }
 }

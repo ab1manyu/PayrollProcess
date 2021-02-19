@@ -4,6 +4,13 @@ public class Company {
 
     private final int ADDED_LENGTH = 4;
 
+
+
+    public Company() {
+        this.emplist = new Employee[4];
+        this.numEmployee = 0;
+    }
+
     /**
      * A helper method to check to see and find a employee in the employee list.
      * @param employee the Employee we are looking for.
@@ -54,11 +61,17 @@ public class Company {
 
     //maintain the original sequence
     public boolean remove(Employee employee) {
+
         return false;
     }
 
     //set working hours for a part time
     public boolean setHours(Employee employee) {
+        if (employee instanceof PartTime){
+            PartTime targetEmployee = (PartTime) employee;
+            return true;
+        }
+
         return false;
 
     }
@@ -137,6 +150,7 @@ public class Company {
             this.emplist[i] = temp;
         }
     }
+
 
 
 }

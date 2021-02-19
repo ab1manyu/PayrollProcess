@@ -11,6 +11,14 @@ public class PartTime extends Employee {
         this.hoursWorked = 0;
     }
 
+    public int getHoursWorked(){
+        return this.hoursWorked;
+    }
+
+    public void setHoursWorked(int hours){
+        this.hoursWorked = hours;
+    }
+
     @Override
     public void calculatePayment() {
         int hoursWorked = this.hoursWorked;

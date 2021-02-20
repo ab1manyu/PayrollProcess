@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 public class PartTime extends Employee {
     private double hourly;
     private int hoursWorked;
@@ -26,24 +28,22 @@ public class PartTime extends Employee {
         if(hoursWorked > MAX_HOURS){
             overtimeHours = hoursWorked - MAX_HOURS;
         }
-        double payment = (this.hourly)*(this.hoursWorked) + (overtimeHours)*(OVERTIME_RATE);
+        double payment = (this.hourly)*(this.hoursWorked) + (overtimeHours)*(this.hourly)*(OVERTIME_RATE);
         super.setPayment(payment);
     }
 
     @Override
     public String toString() {
-        return super.toString() + "::PART TIME:: Hourly Rate $" + this.hourly
+        DecimalFormat df = new DecimalFormat("$#,##0.00");
+        return super.toString() + "::PART TIME:: Hourly Rate " + df.format(this.hourly)
                + ":: Hours Worked this period: " + this.hoursWorked;
     }
 
     @Override
     public boolean equals(Object obj) {
-        PartTime number1 = this;
-        PartTime number2 = (PartTime) obj;
-
-        boolean equalProfile = super.equals(number2);
-        boolean equalHourly = number1.hourly == number2.hourly;
-
-        return equalProfile && equalHourly;
+        if(obj instanceof PartTime){
+            return super.equals((PartTime) obj);
+        }
+        return false;
     }
 }

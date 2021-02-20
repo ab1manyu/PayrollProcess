@@ -39,8 +39,8 @@ public class PayrollProcessing {
                                     System.out.println("Pay rate cannot be negative.");
                                     break;
                                 }
-
-                                boolean wasAdded = company.add(new PartTime(profile, hourlyRate));
+                                Employee partTime = new PartTime(profile, hourlyRate);
+                                boolean wasAdded = company.add(partTime);
                                 if(!wasAdded){
                                     System.out.println("Employee is already in the list");
                                 }else{
@@ -70,8 +70,8 @@ public class PayrollProcessing {
                                     System.out.println("Salary cannot be negative.");
                                     break;
                                 }
-
-                                boolean wasAdded = company.add(new FullTime(profile, salary));
+                                Employee fullTime = new FullTime(profile, salary);
+                                boolean wasAdded = company.add(fullTime);
                                 if(!wasAdded){
                                     System.out.println("Employee is already in the list");
                                 }else{
@@ -147,6 +147,14 @@ public class PayrollProcessing {
 
                         } else
                             System.out.println("Employee database is empty.");
+                        break;
+                    case "C":
+                        if (company.getNumEmployee() > 0){
+                            company.processPayments();
+                            System.out.println("Calculation of employee payments is done.");
+                        }else{
+                            System.out.println("Employee database is empty.");
+                        }
                         break;
                     case "R":
                         if (input.countTokens() == PROFILE_ARGUMENTS) {

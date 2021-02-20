@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 public class FullTime extends Employee{
     private double salary;
 
@@ -20,17 +22,15 @@ public class FullTime extends Employee{
 
     @Override
     public String toString() {
-        return super.toString() + "::FULL TIME::Annual Salary $" + this.salary;
+        DecimalFormat df = new DecimalFormat("$#,##0.00");
+        return super.toString() + "::FULL TIME::Annual Salary " + df.format(this.salary);
     }
 
     @Override
     public boolean equals(Object obj) {
-        FullTime number1 = this;
-        FullTime number2 = (FullTime) obj;
-
-        boolean equalProfile = super.equals(number2);
-        boolean equalSalary = number1.salary == number2.salary;
-
-        return equalProfile && equalSalary;
+        if(obj instanceof FullTime){
+            return super.equals(obj);
+        }
+        return false;
     }
 }

@@ -19,19 +19,23 @@ public class PayrollProcessing {
                 StringTokenizer input = new StringTokenizer(s);
                 String command = input.nextToken();
 
-
                 switch (command) {
 
                     // add a part-time employee with the hourly pay rate
                     case "AP":
                         if (input.countTokens() == ADD_EMP_ARGUMENTS)
                             try {
-                                String name = input.nextToken();
-                                String department = input.nextToken();
+                                String strName = input.nextToken();
+                                String strDepartment = input.nextToken();
                                 String strDate  = input.nextToken();
-                                String salary = input.nextToken();
+                                String strSalary = input.nextToken();
 
-                                company.add(new Employee(new Profile(name, department, new Date(strDate))));
+                                double salary = Double.parseDouble(strSalary);
+                                if(salary > 0) {
+                                    company.add(new PartTime(profileValidator(strName,strDepartment,strDate),salary));
+                                }
+                                else
+                                    System.out.println("Pay rate cannot be negative.");
 
                             } catch (Exception e) {
                                 System.out.println("Invalid Command!");
@@ -86,25 +90,22 @@ public class PayrollProcessing {
      * to do:
      *
      * check if the name is valid -> run through tokenizer and see if there are two tokens between a comma
-     *
+     * check if the department is valid -> exactly ECE / IT / CS
+     * check date -> isValid method
      *
      */
-    private Profile profileValidator(String name, String department, String strDate, String salary) {
+    private Profile profileValidator(String name, String department, String strDate) {
 
-        boolean nameChecked, departmentChecked, dateChecked, salaryChecked;
+        boolean nameChecked, departmentChecked, dateChecked;
         StringTokenizer nameCheck = new StringTokenizer(name, ",");
+        Date date = new Date(strDate);
 
         nameChecked = nameCheck.countTokens()==ALLOWED_NAME_ARGUMENTS;
         departmentChecked = department.equals("ECE") || department.equals("IT") || department.equals("CS");
-
-        Date date = new Date(strDate);
         dateChecked = date.isValid();
 
-
-
-
-        if (nameChecked){
-            return new Profile(name,department,date)
+        if (nameChecked && departmentChecked && dateChecked){
+            return new Profile(name, department, date);
         }
         return null;
     }

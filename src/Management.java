@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 public class Management extends FullTime {
     private int role;
 
@@ -17,22 +19,22 @@ public class Management extends FullTime {
     @Override
     public void calculatePayment() {
         double compensation = this.getCompensation();
-        double salary = super.getSalary();
+        double salary = super.getSalary()/FullTime.TOTAL_PAY_PERIODS;
         super.setPayment(salary + compensation);
     }
 
     @Override
     public String toString() {
-        return super.toString() + "::" + this.getRoleAsString() + " Compensation " + this.getCompensation() ;
+        DecimalFormat df = new DecimalFormat("$#,##0.00");
+        return super.toString() + "::" + this.getRoleAsString() + " Compensation " + df.format(this.getCompensation());
     }
 
     @Override
     public boolean equals(Object obj) {
-        Management number1 = this;
-        Management number2 = (Management) obj;
-        boolean equalStats = super.equals(obj);
-        boolean equalRole = number1.role == number2.role;
-        return equalRole && equalRole;
+        if(obj instanceof Management){
+            return super.equals(obj);
+        }
+        return false;
     }
 
     private String getRoleAsString(){

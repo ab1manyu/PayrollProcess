@@ -19,7 +19,7 @@ public class Date implements Comparable<Date>{
     public static final int QUATERCENTENNIAL = 400;
     public static final int FEBRUARY_LEAP = 29;
     public static final int MONTH_END = 31;
-    public static final int OLD_BOOK = 1900;
+    public static final int OLD_EMPLOYEE = 1900;
 
     /**
      * Creates a Date object based off the given string.
@@ -105,9 +105,9 @@ public class Date implements Comparable<Date>{
     public boolean isValid() {
         boolean lessThanCurrDate = !this.greaterThanCurrDate();
         boolean dayValidator = this.dayValidator();
-        boolean publishedAfter1900 = this.year > OLD_BOOK;
+        boolean bornAfter1900 = this.year > OLD_EMPLOYEE;
 
-        return lessThanCurrDate && dayValidator && publishedAfter1900;
+        return lessThanCurrDate && dayValidator && bornAfter1900;
     }
 
     /**

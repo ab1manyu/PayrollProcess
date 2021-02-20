@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 public class Employee {
     private Profile profile;
     private double payment;
@@ -11,7 +13,8 @@ public class Employee {
 
     @Override
     public String toString() {
-        return this.profile.toString() + "::Payment " + this.payment;
+        DecimalFormat df = new DecimalFormat("$#,##0.00");
+        return this.profile.toString() + "::Payment " + df.format(this.payment);
     }
 
     @Override

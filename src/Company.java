@@ -2,8 +2,8 @@ public class Company {
     private Employee[] emplist;
     private int numEmployee;
 
-    private final int ADDED_LENGTH = 4;
-
+    public static final int ADDED_LENGTH = 4;
+    public static final int NOT_FOUND = -1;
 
 
     public Company() {
@@ -19,7 +19,7 @@ public class Company {
     private int find(Employee employee) {
         Employee[] emplist = this.emplist;
         for(int i = 0; i < emplist.length; i++){
-            if(employee.equals(emplist[i])){
+            if(emplist[i] != null && employee.equals(emplist[i])){
                 return i;
             }
         }
@@ -47,10 +47,9 @@ public class Company {
      */
     public boolean add(Employee employee) { //check the profile before adding
         Employee[] emplist = this.emplist;
-        for (int i = 0; i < emplist.length; i++){
-            if(emplist[i] != null && employee.equals(emplist[i])){
-               return false;
-            }
+        int existingEmployee = this.find(employee);
+        if(existingEmployee != NOT_FOUND){
+            return false;
         }
         for (int i = 0; i < emplist.length; i++) {
             if (emplist[i] == null) {
@@ -80,15 +79,15 @@ public class Company {
     //set working hours for a part time
     public boolean setHours(Employee employee) {
         Employee[] emplist = this.emplist;
-        for (int i = 0; i < emplist.length; i++){
-            if(employee.equals(emplist[i])){
-                if (emplist[i] instanceof PartTime){
-                    PartTime partTimeEmployee = (PartTime) employee;
-                    PartTime target = (PartTime) emplist[i];
-                    target.setHoursWorked(partTimeEmployee.getHoursWorked());
-                    return true;
-                }
-            }
+        int indexEmployee = this.find(employee);
+        if(indexEmployee == NOT_FOUND){
+            return false;
+        }
+        if (emplist[indexEmployee] instanceof PartTime){
+            PartTime partTimeEmployee = (PartTime) employee;
+            PartTime target = (PartTime) emplist[indexEmployee];
+            target.setHoursWorked(partTimeEmployee.getHoursWorked());
+            return true;
         }
         return false;
 

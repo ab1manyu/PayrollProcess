@@ -93,6 +93,11 @@ public class Company {
         return false;
 
     }
+
+    public int getNumEmployee() {
+        return numEmployee;
+    }
+
     //process payments for all employees
     public void processPayments() {
         Employee[] emplist = this.emplist;

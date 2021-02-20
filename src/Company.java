@@ -47,6 +47,11 @@ public class Company {
      */
     public boolean add(Employee employee) { //check the profile before adding
         Employee[] emplist = this.emplist;
+        for (int i = 0; i < emplist.length; i++){
+            if(emplist[i] != null && employee.equals(emplist[i])){
+               return false;
+            }
+        }
         for (int i = 0; i < emplist.length; i++) {
             if (emplist[i] == null) {
                 emplist[i] = employee;
@@ -61,22 +66,51 @@ public class Company {
 
     //maintain the original sequence
     public boolean remove(Employee employee) {
-
+        Employee[] emplist = this.emplist;
+        for (int i = 0; i < emplist.length; i++){
+            if(emplist[i] != null && employee.equals(emplist[i])){
+                emplist[i] = null;
+                numEmployee--;
+                return true;
+            }
+        }
         return false;
     }
 
     //set working hours for a part time
     public boolean setHours(Employee employee) {
-        if (employee instanceof PartTime){
-            PartTime targetEmployee = (PartTime) employee;
-            return true;
+        Employee[] emplist = this.emplist;
+        for (int i = 0; i < emplist.length; i++){
+            if(employee.equals(emplist[i])){
+                if (emplist[i] instanceof PartTime){
+                    PartTime partTimeEmployee = (PartTime) employee;
+                    PartTime target = (PartTime) emplist[i];
+                    target.setHoursWorked(partTimeEmployee.getHoursWorked());
+                    return true;
+                }
+            }
         }
-
         return false;
 
     }
     //process payments for all employees
-    public void processPayments() { }
+    public void processPayments() {
+        Employee[] emplist = this.emplist;
+        for (int i = 0; i < emplist.length; i++){
+            if(emplist[i] != null){
+                if(emplist[i] instanceof FullTime){
+                    FullTime employee = (FullTime) emplist[i];
+                    employee.calculatePayment();
+                }else if(emplist[i] instanceof PartTime){
+                    PartTime employee = (PartTime) emplist[i];
+                    employee.calculatePayment();
+                }else{
+                    Management employee = (Management) emplist[i];
+                    employee.calculatePayment();
+                }
+            }
+        }
+    }
 
     //print earning statements for all employees
     public void print() {

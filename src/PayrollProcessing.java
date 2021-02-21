@@ -104,7 +104,7 @@ public class PayrollProcessing {
                                     System.out.println("Salary cannot be negative.");
                                     break;
                                 }
-                                if(role <= 0 && role > 3){
+                                if(role <= 0 || role > 3){
                                     System.out.println("Invalid Management code.");
                                     break;
                                 }
@@ -157,7 +157,7 @@ public class PayrollProcessing {
                         }
                         break;
                     case "R":
-                        if (input.countTokens() == PROFILE_ARGUMENTS) {
+                        if (input.countTokens() == PROFILE_ARGUMENTS && company.getNumEmployee() > 0) {
                             try {
                                 String strName = input.nextToken();
                                 String strDepartment = input.nextToken();
@@ -176,10 +176,12 @@ public class PayrollProcessing {
 
                             }
 
+                        }else{
+                            System.out.println("Employee database is empty.");
                         }
                         break;
                     case "S":
-                        if (input.countTokens() == EMP_ARGUMENTS) {
+                        if (input.countTokens() == EMP_ARGUMENTS && company.getNumEmployee() > 0) {
                             try {
                                 String strName = input.nextToken();
                                 String strDepartment = input.nextToken();
@@ -214,6 +216,8 @@ public class PayrollProcessing {
 
                             }
 
+                        }else{
+                            System.out.println("Employee database is empty.");
                         }
                         break;
 

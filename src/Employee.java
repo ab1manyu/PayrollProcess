@@ -12,6 +12,8 @@ public class Employee {
     private Profile profile;
     private double payment;
 
+    public static final int EARLIER_THAN = -1;
+
     /**
      * Instantiates an Employee object by taking in a profile and setting it to this.profile.
      * Also by default, makes the payment 0.
@@ -99,7 +101,9 @@ public class Employee {
         Date date1 = this.getProfile().getDateHired();
         Date date2 = employee.getProfile().getDateHired();
 
-        return date1.compareTo(date2)==1;
+        int isEarlier = date1.compareTo(date2);
+
+        return isEarlier == EARLIER_THAN;
     }
 
 

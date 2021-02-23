@@ -53,6 +53,8 @@ public class Company {
     /**
      * Method to add a specified employee to the employee list.
      * @param employee the Employee we are adding to the employee list.
+     * @return A boolean value showing if the employee was placed in the list.
+     *         True if the employee was successfully placed, false otherwise.
      */
     public boolean add(Employee employee) { //check the profile before adding
         Employee[] emplist = this.emplist;
@@ -120,6 +122,8 @@ public class Company {
 
     /**
      * Returns the number of employees currently in the company.
+     * @return An int value representing the # of employees in the
+     *         company.
      */
     public int getNumEmployee() {
         return numEmployee;

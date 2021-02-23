@@ -69,10 +69,13 @@ public class PartTime extends Employee {
     public void calculatePayment() {
         int hoursWorked = this.hoursWorked;
         int overtimeHours = 0;
+        double payment = 0;
         if(hoursWorked > MAX_HOURS){
             overtimeHours = hoursWorked - MAX_HOURS;
+            payment = (this.hourly*MAX_HOURS) + (overtimeHours*this.hourly*OVERTIME_RATE);
+        }else{
+            payment = this.hourly*this.hoursWorked;
         }
-        double payment = (this.hourly)*(this.hoursWorked) + (overtimeHours)*(this.hourly)*(OVERTIME_RATE);
         super.setPayment(payment);
     }
 

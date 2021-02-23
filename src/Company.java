@@ -1,3 +1,10 @@
+/**
+ * The Company class stores a list of Employees in an array and provides functions to add,
+ * remove, find, set hours and process payments.
+ * Other functions include printing employees in order by date / department. Also there are
+ * helper methods that are referenced throughout the PayrollProcessing class.
+ * @author  Abimanyu Ananthu, Ashish Shenoy
+ */
 public class Company { 
     private Employee[] emplist;
     private int numEmployee;
@@ -5,7 +12,9 @@ public class Company {
     public static final int ADDED_LENGTH = 4;
     public static final int NOT_FOUND = -1;
 
-
+    /**
+     * Creates a Company and starts off with memory to store 4 employees.
+     */
     public Company() {
         this.emplist = new Employee[4];
         this.numEmployee = 0;
@@ -63,7 +72,12 @@ public class Company {
         return this.add(employee);
     }
 
-    //maintain the original sequence
+    /**
+     * Method to remove a specified employee from the company.
+     * @param employee the employee we are removing to the company.
+     * @return returns true if the employee was removed, otherwise false in the case the employee is not able to be
+     * removed because they are not in the company.
+     */
     public boolean remove(Employee employee) {
         Employee[] emplist = this.emplist;
         for (int i = 0; i < emplist.length; i++){
@@ -76,7 +90,12 @@ public class Company {
         return false;
     }
 
-    //set working hours for a part time
+    /**
+     * Method to set the hours that a specific part time employee has worked.
+     * This method is will return false if the employee is not part time.
+     * @param employee the employee that will be working for __ hours. We specify the amount of hours worked for withing the PayrollProcess class.
+     * @return returns true if the employee was able to have their hours set. Returns false if the employee was not found or not part time.
+     */
     public boolean setHours(Employee employee) {
         Employee[] emplist = this.emplist;
         int indexEmployee = this.find(employee);
@@ -90,14 +109,19 @@ public class Company {
             return true;
         }
         return false;
-
     }
 
+    /**
+     * Returns the number of employees currently in the company.
+     */
     public int getNumEmployee() {
         return numEmployee;
     }
 
-    //process payments for all employees
+    /**
+     * Method to process all payments in the company, uses calculatePayments which will 
+     * perform the correct calculation due to polymorphism.
+     */
     public void processPayments() {
         Employee[] emplist = this.emplist;
         for (Employee value : emplist) {
@@ -107,7 +131,9 @@ public class Company {
         }
     }
 
-    //print earning statements for all employees
+    /**
+     * Method to print all the employees in the company.
+     */
     public void print() {
         Employee[] emplist = this.emplist;
         for (Employee employee : emplist) {
@@ -115,17 +141,27 @@ public class Company {
                 System.out.println(employee);
         }
     }
-    //print earning statements by department
+    
+    
+    /**
+     * Method to print all the employees in the company, by their departments.
+     */
     public void printByDepartment() {
         this.sortByDepartment();
         this.print();
     }
-    //print earning statements by date hired
+    
+     /**
+     * Method to print all the employees in the company, in ascending date order.
+     */
     public void printByDate() {
         this.sortByDate();
         this.print();
     }
 
+    /**
+     * Helper method to sort the employees in ascending date order, using selection sort.
+     */
     private void sortByDate(){
         Employee[] el = this.emplist;
         int len = el.length;;
@@ -145,7 +181,11 @@ public class Company {
             el[i] = temp;
         }
     }
-
+    
+    /**
+     * Helper method to sort the employees by department. CS employees are at the front, 
+     * ECE employees in the middle and IT employees are at the end. Uses selection sort.
+     */
     private void sortByDepartment(){
         Employee[] el = this.emplist;
         int len = el.length;

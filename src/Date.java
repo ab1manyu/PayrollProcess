@@ -75,6 +75,15 @@ public class Date implements Comparable<Date>{
         return this.day;
     }
 
+    /**
+     * Overridden method from the Comparable interface that compares
+     * 2 dates to see if one is greater than, less than, or equal
+     * to each other.
+     *
+     * @param date2 - A Date object that is being compared to the first Date object
+     * @return An int value, specifically 1 when date 1 is after date 2, 0 when
+     * date 1 is the same as date 2, and -1 when date 1 is before than date 2
+     */
     public int compareTo(Date date2){
         Date date1 = this;
 

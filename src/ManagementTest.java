@@ -10,6 +10,14 @@ class ManagementTest {
 
     Management management1, management2, management3;
 
+
+    /**
+     * This is a setup method that runs the following code
+     * before running the test methods.
+     *
+     * Creates a new company object and 3 distinct profiles
+     * that will be used accordingly in each test method
+     */
     @BeforeEach
     void setUp() {
         company = new Company();
@@ -17,11 +25,19 @@ class ManagementTest {
         profile1 = new Profile("Chang,Lily","CS", new Date());
         profile2 = new Profile("Chang,Flower","ECE", new Date());
         profile3 = new Profile("Chang,Petunia","IT", new Date());
-        profile4 = new Profile("Chang,Rose","IT", new Date());
 
-        employee = new Employee(profile1);
+
     }
 
+    /**
+     * We tested this method by having 3 different Management employees, each
+     * with a distinct role and same salary to see if it prints out the
+     * correct payment.
+     *
+     * We used assertEquals where we compared the payment value that
+     * we manually calculated vs. the output as a result of calling
+     * the calculatePayment() method.
+     */
     @Test
     void calculatePayment() {
         management1 = new Management(profile1,26000, 1);

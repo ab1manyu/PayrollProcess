@@ -62,8 +62,10 @@ public class PayrollProcessing {
                                 }
 
                             } catch (Exception e) {
-                                System.out.println("Invalid Command!");
+                                System.out.println("Invalid parameter values");
                             }
+                        }else{
+                            System.out.println("Invalid number of arguments");
                         }
                         break;
                     // Add a full-time employee with a yearly salary.
@@ -94,8 +96,10 @@ public class PayrollProcessing {
                                 }
 
                             } catch (Exception e) {
-                                System.out.println("Invalid Command!");
+                                System.out.println("Invalid parameter values");
                             }
+                        }else{
+                            System.out.println("Invalid number of arguments");
                         }
                         break;
                     // Add a management employee with a yearly salary + compensation depending on role.
@@ -130,8 +134,10 @@ public class PayrollProcessing {
                                     System.out.println("Employee Added.");
                                 }
                             } catch (Exception e) {
-                                System.out.println("Invalid Command!");
+                                System.out.println("Invalid parameter values");
                             }
+                        }else{
+                            System.out.println("Invalid number of arguments");
                         }
                         break;
 
@@ -192,12 +198,12 @@ public class PayrollProcessing {
                                         System.out.println("Employee removed.");
                                     }
                                 } catch (Exception e) {
-
+                                    System.out.println("Invalid parameter values");
                                 }
                             } else
                                 System.out.println("Employee database is empty.");
                         }else
-                            System.out.println("Invalid number of arguments after 'R'");
+                            System.out.println("Invalid number of arguments");
 
                         break;
 
@@ -234,7 +240,7 @@ public class PayrollProcessing {
                                 }
 
                             } catch (Exception e) {
-
+                                System.out.println("Invalid parameter values");
                             }
 
                         }else{
@@ -259,12 +265,12 @@ public class PayrollProcessing {
     }
 
     /**
-     * to do:
-     *
-     * check if the name is valid -> run through tokenizer and see if there are two tokens between a comma
-     * check if the department is valid -> exactly ECE / IT / CS
-     * check date -> isValid method
-     *
+     * Checks the validity of the date and department code passed in
+     * @param name - String representing the name that's going to be on a profile
+     * @param department - String representing the department code
+     * @param strDate - Date object representing the date hired
+     * @return A Profile object if the validations are passed, otherwise
+     *         returns null.
      */
     private Profile profileValidator(String name, String department, String strDate) {
 

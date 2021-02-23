@@ -1,12 +1,26 @@
 import java.util.Scanner; 
 import java.util.StringTokenizer;
 
+/**
+ * A class that drives the entire program
+ * and takes in all the command line arguments
+ * from the client
+ *
+ * @author Abimanyu Ananthu, Ashish Shenoy
+ */
 public class PayrollProcessing {
 
     public static final int EMP_ARGUMENTS = 4;
     public static final int ROLE_ARGUMENTS = 5;
     public static final int PROFILE_ARGUMENTS = 3;
 
+    /**
+     * Runs the program by taking in the user's
+     * command line arguments/requests and responding
+     * with the appropriate results. Will quit the session
+     * once client enters 'Q' to safely exit.
+     *
+     */
     public void run() {
         boolean running = true;
         Company company = new Company();
@@ -20,7 +34,7 @@ public class PayrollProcessing {
                 String command = input.nextToken();
 
                 switch (command) {
-                    // add a part-time employee with the hourly pay rate
+                    // Add a part-time employee with the hourly pay rate
                     case "AP":
                         if (input.countTokens() == EMP_ARGUMENTS) {
                             try {
@@ -52,6 +66,7 @@ public class PayrollProcessing {
                             }
                         }
                         break;
+                    // Add a full-time employee with a yearly salary.
                     case "AF":
                         if (input.countTokens() == EMP_ARGUMENTS) {
                             try {
@@ -83,7 +98,7 @@ public class PayrollProcessing {
                             }
                         }
                         break;
-
+                    // Add a management employee with a yearly salary + compensation depending on role.
                     case "AM":
                         if (input.countTokens() == ROLE_ARGUMENTS) {
                             try {
@@ -120,8 +135,7 @@ public class PayrollProcessing {
                         }
                         break;
 
-
-                    // default print
+                    // Default print
                     case "PA":
                         if (company.getNumEmployee() > 0) {
                             System.out.println("--Printing earning statements for all employees--");
@@ -130,7 +144,7 @@ public class PayrollProcessing {
                             System.out.println("Employee database is empty.");
                         break;
 
-                    //  printing by date hired
+                    //  Printing by date hired
                     case "PH":
                         if (company.getNumEmployee() > 0) {
                             System.out.println("--Printing earning statements by date hired--");
@@ -139,7 +153,7 @@ public class PayrollProcessing {
                             System.out.println("Employee database is empty.");
                         break;
 
-                    // printing by department
+                    // Printing by department
                     case "PD":
                         if (company.getNumEmployee() > 0) {
                             System.out.println("--Printing earning statements by department--");
@@ -148,6 +162,8 @@ public class PayrollProcessing {
                         } else
                             System.out.println("Employee database is empty.");
                         break;
+
+                    // Calculates and prints out the total compensation of all employees currently in the company.
                     case "C":
                         if (company.getNumEmployee() > 0){
                             company.processPayments();
@@ -156,6 +172,8 @@ public class PayrollProcessing {
                             System.out.println("Employee database is empty.");
                         }
                         break;
+
+                    // Remove an employee from the company (youre fired!! -benson)
                     case "R":
                         if (input.countTokens() == PROFILE_ARGUMENTS) {
                             if(company.getNumEmployee() > 0 ) {
@@ -182,6 +200,8 @@ public class PayrollProcessing {
                             System.out.println("Invalid number of arguments after 'R'");
 
                         break;
+
+                    // Set hours for the parttime employee that has worked for _ hours
                     case "S":
                         if (input.countTokens() == EMP_ARGUMENTS && company.getNumEmployee() > 0) {
                             try {

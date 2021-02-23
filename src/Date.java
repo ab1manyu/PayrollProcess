@@ -8,12 +8,12 @@ import java.util.StringTokenizer;
  * the day within the respective instance variables.
  * @author Abimanyu Ananthu, Ashish Shenoy
  */
+
 public class Date implements Comparable<Date>{
     private int year;
     private int month;
     private int day;
 
-    //constants
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
@@ -217,12 +217,10 @@ public class Date implements Comparable<Date>{
      */
     public static void main(String[] args) {
         // Testing the isValid Method
-
         Date date1 = new Date("1/2/2001");
         Date date2 = new Date("1/2/2001");
         System.out.println(date1.compareTo(date2));
 
-        /*
         // Test Case #1, checking invalid month.
         System.out.println("Running Test Case#1a");
         Date tCase1a = new Date("13/1/2000");
@@ -294,7 +292,7 @@ public class Date implements Comparable<Date>{
         Date tCase7 = new Date("4/30/2019");
         if(tCase7.isValid()) System.out.println("Test Case#7, checking a normal date. Passed");
         else System.out.println("Test Case#7, checking a normal date. Failed");
-        */
+
     }
 
 

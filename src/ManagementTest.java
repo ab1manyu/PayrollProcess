@@ -32,12 +32,12 @@ class ManagementTest {
         company.add(management2);
         company.add(management3);
 
-        management1.calculatePayment();
-        management2.calculatePayment();
-        management3.calculatePayment();
+        management1.calculatePayment(); // Expected payment is (26000/26) + (5000/26) = 1192.31
+        management2.calculatePayment(); // Expected payment is (26000/26) + (9500/26) = 1365.38
+        management3.calculatePayment(); // Expected payment is (26000/26) + (12000/26) = 1461.54
 
-        assertEquals("1192.31", management1.getFormattedPayment());
-        assertEquals("1365.38", management2.getFormattedPayment());
-        assertEquals("1461.54", management3.getFormattedPayment());
+        assertEquals("1192.31", management1.getFormattedPayment()); //Test case for Manager
+        assertEquals("1365.38", management2.getFormattedPayment()); //Test case for Dept. Head
+        assertEquals("1461.54", management3.getFormattedPayment()); //Test case for Director
     }
 }

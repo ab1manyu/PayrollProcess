@@ -51,6 +51,13 @@ public class Company {
         if(existingEmployee != NOT_FOUND){
             return false;
         }
+        for (int j = 0; j < emplist.length; j++){
+            if(emplist[j] != null){
+                if(employee.getProfile().equals(emplist[j].getProfile())){
+                    return false;
+                }
+            }
+        }
         for (int i = 0; i < emplist.length; i++) {
             if (emplist[i] == null) {
                 emplist[i] = employee;
@@ -83,7 +90,7 @@ public class Company {
         if(indexEmployee == NOT_FOUND){
             return false;
         }
-        if (emplist[indexEmployee] instanceof PartTime){
+        if (emplist[indexEmployee].equals(employee)){
             PartTime partTimeEmployee = (PartTime) employee;
             PartTime target = (PartTime) emplist[indexEmployee];
             target.setHoursWorked(partTimeEmployee.getHoursWorked());

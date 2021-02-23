@@ -90,8 +90,8 @@ public class PartTime extends Employee {
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("$#,##0.00");
-        return super.toString() + "::PART TIME:: Hourly Rate " + df.format(this.hourly)
-               + ":: Hours Worked this period: " + this.hoursWorked;
+        return super.toString() + "::PART TIME::Hourly Rate " + df.format(this.hourly)
+               + "::Hours Worked this period: " + this.hoursWorked;
     }
 
     /**
